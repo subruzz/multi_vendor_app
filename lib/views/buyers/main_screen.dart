@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mutli_vendor_app/controllers/bottom_nav_controller.dart';
+import 'package:mutli_vendor_app/provider/bottom_nav_controller.dart';
 import 'package:provider/provider.dart';
 
 class MainScreen extends StatelessWidget {
@@ -10,7 +10,6 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final bottomNavProvider =
         Provider.of<BottomNavigationBarProvider>(context, listen: true);
-    print('vuild bcall');
     return Scaffold(
         bottomNavigationBar: BottomNavigationBar(
             currentIndex: bottomNavProvider.currentIndex,
@@ -38,10 +37,6 @@ class MainScreen extends StatelessWidget {
                   icon: SvgPicture.asset('assets/icons/account.svg'),
                   label: 'ACCOUNT')
             ]),
-        body: Consumer<BottomNavigationBarProvider>(
-          builder: (context, value, child) {
-            return value.currentWidget;
-          },
-        ));
+        body: bottomNavProvider.currentWidget);
   }
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mutli_vendor_app/controllers/bottom_nav_controller.dart';
+import 'package:mutli_vendor_app/provider/banner_controller.dart';
+import 'package:mutli_vendor_app/provider/bottom_nav_controller.dart';
+import 'package:mutli_vendor_app/views/buyers/auth/register_screen.dart';
 import 'package:mutli_vendor_app/views/buyers/main_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
@@ -22,7 +24,12 @@ class MyApp extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(
         const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
     return MultiProvider(
-      providers: [ChangeNotifierProvider(create:  (context) => BottomNavigationBarProvider(),)],
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => BottomNavigationBarProvider(),
+        ),
+        ChangeNotifierProvider(create: (context) => BannerProvider())
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
